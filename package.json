@@ -1,0 +1,42 @@
+{
+  "name": "@blumilksoftware/eslint-config-blumilk",
+  "version": "1.0.0",
+  "description": "Blumilk ESLint Config",
+  "license": "MIT",
+  "keywords": [
+    "typescript",
+    "eslint",
+    "eslint-config",
+    "lint",
+    "config"
+  ],
+  "main": ".eslintrc.js",
+  "author": "Blumilk",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/blumilksoftware/eslint-config-blumilk.git"
+  },
+  "scripts": {
+    "lint": "eslint src --ext .vue,.js,.ts --ignore-path .gitignore",
+    "lint:fix": "eslint --ext .vue,.js,.ts --fix"
+  },
+  "peerDependencies": {
+    "eslint": "^8.43.0",
+    "typescript": "^5.1.3"
+  },
+  "eslintConfig": {
+    "extends": [
+      "./.eslintrc.js"
+    ]
+  },
+  "dependencies": {
+    "@rushstack/eslint-patch": "^1.3.2",
+    "@typescript-eslint/eslint-plugin": "^5.60.0",
+    "@typescript-eslint/parser": "^5.60.0",
+    "@vue/eslint-config-prettier": "^7.1.0",
+    "@vue/eslint-config-typescript": "^11.0.3",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-vue": "^9.15.0"
+  }
+}

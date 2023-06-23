@@ -18,7 +18,7 @@
   },
   "scripts": {
     "lint": "eslint src --ext .vue,.js,.ts --ignore-path .gitignore",
-    "lint:fix": "eslint --ext .vue,.js,.ts --fix"
+    "lintf": "eslint --ext .vue,.js,.ts --fix"
   },
   "peerDependencies": {
     "eslint": "^8.43.0",

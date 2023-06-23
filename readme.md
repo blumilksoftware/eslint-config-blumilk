@@ -47,5 +47,5 @@ npm run lint
 
 or following to fix found errors:
 ```shell
-npm run lint:fix
+npm run lintf
 ```

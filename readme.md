@@ -5,15 +5,20 @@ ESlint config for all Blumilk projects.
 Add package to our project:
 ```shell
 npm install -D eslint typescript
+
 npm install git+https://github.com/blumilksoftware/eslint-config-blumilk.git
 ```
 
-Create `eslintrc.js` file in your project's root directory:
+Create `.gitignore` file in your project's root directory:
+```shell
+touch .gitignore
+```
+
+Create `.eslintrc.js` file in your project's root directory:
 ```js
 module.exports = {
   env: {
     browser: true,
-    amd: true,
     node: true,
   },
   extends: ['blumilk'],
@@ -24,7 +29,7 @@ You can add two scripts to your package.json to lint and/or fix:
 ```js
 "scripts": {
   "lint": "eslint src --ext .vue,.js,.ts --ignore-path .gitignore",
-  "lint:fix": "eslint src --ext .vue,.js,.ts --fix"
+  "lintf": "eslint src --ext .vue,.js,.ts --fix"
 }
 ```
 
@@ -48,4 +53,29 @@ npm run lint
 or following to fix found errors:
 ```shell
 npm run lintf
+```
+
+### Recomended Prettier
+If you want to use prettier:
+```shell
+npm install prettier
+npm install eslint-config-prettier
+```
+
+Add to your`.eslintrc` file:
+```js
+{
+  extends: ['@vue/eslint-config-prettier']
+}
+```
+
+And then recommended to create a .prettierrc file in your root directory like so:
+```js
+{
+  "trailingComma": "all",
+  "semi": false,
+  "tabWidth": 2,
+  "singleQuote": true,
+  "printWidth": 120
+}
 ```

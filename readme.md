@@ -21,6 +21,9 @@ module.exports = {
     node: true,
   },
   extends: ['blumilk'],
+  parserOptions: {
+    project: ['tsconfig.json'], //Path to your tsconfig file. 
+  },
 }
 ```
 

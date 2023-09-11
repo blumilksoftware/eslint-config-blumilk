@@ -14,9 +14,10 @@ module.exports = {
   ],
   parser: 'vue-eslint-parser',
   parserOptions: {
+    sourceType: 'module',
     ecmaVersion: 'latest',
     parser: '@typescript-eslint/parser',
-    sourceType: 'module'
+    extraFileExtensions: ['.vue']
   },
   extends: [
     'standard-with-typescript',
@@ -38,6 +39,7 @@ module.exports = {
     'vue/multi-word-component-names': 0,
     'vue/first-attribute-linebreak': 0,
     'vue/max-attributes-per-line': 0,
+    'vue/singleline-html-element-content-newline': 0,
     'vue/padding-line-between-blocks': ['error', 'always'],
     '@typescript-eslint/no-explicit-any': 'warn',
     '@typescript-eslint/no-empty-function': 'off',

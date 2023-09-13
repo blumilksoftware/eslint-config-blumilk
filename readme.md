@@ -5,7 +5,7 @@ ESlint config for all Blumilk projects.
 Add package to our project:
 ```shell
 npm install -D eslint typescript
-npm install git+https://github.com/blumilksoftware/eslint-config-blumilk.git
+npm install @blumilksoftware/eslint-config
 ```
 
 Create `.gitignore` file in your project's root directory:

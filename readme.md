@@ -20,7 +20,7 @@ module.exports = {
     browser: true,
     node: true,
   },
-  extends: ['blumilk'],
+  extends: "@blumilksoftware/eslint-config",
   parserOptions: {
     project: ['tsconfig.json'], //Path to your tsconfig file. 
   },
@@ -40,7 +40,7 @@ If you'd like to overwrite eslint settings, you can add the rules in your `.esli
 
 ```js
 {
-  extends: ['blumilk'],
+  extends: "@blumilksoftware/eslint-config",
   rules: {
     ...
   }
@@ -71,7 +71,7 @@ Add to your`.eslintrc` file:
 }
 ```
 
-And then recommended to create a .prettierrc file in your root directory like so:
+And then recommended to create a `.prettierrc` file in your root directory like so:
 ```js
 {
   "trailingComma": "all",

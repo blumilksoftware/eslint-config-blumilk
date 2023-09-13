@@ -1,0 +1,10 @@
+version: "3.7"
+
+services:
+  node:
+    container_name: eslint-config-node
+    image: node:20-alpine3.17
+    working_dir: /application
+    volumes:
+      - .:/application
+    restart: always

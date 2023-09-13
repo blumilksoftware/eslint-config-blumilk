@@ -1,20 +1,21 @@
 {
-  "name": "eslint-config-blumilk",
+  "name": "@blumilksoftware/eslint-config",
   "version": "1.0.0",
-  "description": "Blumilk ESLint Config",
+  "description": "Blumilk ESLint config",
   "license": "MIT",
   "keywords": [
     "typescript",
     "eslint",
     "eslint-config",
     "lint",
-    "config"
+    "config",
+    "blumilk"
   ],
   "main": "index.js",
   "author": "Blumilk",
   "repository": {
     "type": "git",
-    "url": "https://github.com/blumilksoftware/eslint-config-blumilk.git"
+    "url": "https://github.com/blumilksoftware/eslint-config-blumilk"
   },
   "engines": {
     "node": ">=20.0.0"

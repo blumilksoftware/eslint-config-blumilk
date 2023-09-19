@@ -20,7 +20,7 @@ module.exports = {
     browser: true,
     node: true,
   },
-  extends: "@blumilksoftware/eslint-config",
+  extends: '@blumilksoftware/eslint-config',
   parserOptions: {
     project: ['tsconfig.json'], //Path to your tsconfig file. 
   },
@@ -40,7 +40,7 @@ If you'd like to overwrite eslint settings, you can add the rules in your `.esli
 
 ```js
 {
-  extends: "@blumilksoftware/eslint-config",
+  extends: '@blumilksoftware/eslint-config',
   rules: {
     ...
   }
@@ -67,7 +67,7 @@ npm install eslint-config-prettier
 Add to your`.eslintrc` file:
 ```js
 {
-  extends: ['@vue/eslint-config-prettier']
+  extends: ['@blumilksoftware/eslint-config', '@vue/eslint-config-prettier']
 }
 ```
 

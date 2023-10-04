@@ -1,83 +1,70 @@
-## blumilksoftware/eslint-config-blumilk
-ESlint config for all Blumilk projects.
+## eslint-config-blumilk
+
+ESlint default preset for Blumilk projects. This package assumes that the project uses modern Laravel, Vue, Typescript and TailwindCSS. It focuses on enforcing code consistency and adds some basic styling rules. Ideally, it should be used together with Prettier.
+
+This package uses the new [ESLint configuration format](https://eslint.org/docs/latest/use/configure/configuration-files-new) and requires ESLint 8 or above.
+
+In general this package includes rules from:
+
+- [vue/vue3-recommended](https://eslint.vuejs.org/rules/)
+- [tailwindcss/recommended](https://github.com/francoismassart/eslint-plugin-tailwindcss)
+- [promise/recommended](https://github.com/eslint-community/eslint-plugin-promise#rules)
+- [n/recommended](https://github.com/eslint-community/eslint-plugin-n#-rules)
+- [eslint.recommended](https://eslint.org/docs/latest/rules/)
+
+On top of this we layer some overrides and typescript related preferences (mostly based on [standard-with-typescript](https://github.com/standard/eslint-config-standard-with-typescript)).
 
 ### Usage
-Add package to our project:
-```shell
-npm install -D eslint typescript
-npm install @blumilksoftware/eslint-config
-```
 
-Create `.gitignore` file in your project's root directory:
-```shell
-touch .gitignore
-```
+Install package in your project:
 
-Create `.eslintrc.js` file in your project's root directory:
+    npm install -D @blumilksoftware/eslint-config
+
+Create `eslint.config.js` file in your project's root directory:
+
 ```js
-module.exports = {
-  env: {
-    browser: true,
-    node: true,
-  },
-  extends: '@blumilksoftware/eslint-config',
-  parserOptions: {
-    project: ['tsconfig.json'], //Path to your tsconfig file. 
-  },
-}
+import blumilkDefault from '@blumilksoftware/eslint-config'
+
+export default [
+    ...blumilkDefault,
+]
 ```
 
-You can add two scripts to your package.json to lint and/or fix:
+You can also add scripts to your `package.json`:
+
 ```js
-"scripts": {
-  "lint": "eslint src --ext .vue,.js,.ts --ignore-path .gitignore",
-  "lintf": "eslint src --ext .vue,.js,.ts --fix"
+{
+  …
+  "scripts": {
+    "lint": "eslint .",
+    "lintf": "eslint . --fix"
+  }
+  …
 }
 ```
 
 ### Configuration
-If you'd like to overwrite eslint settings, you can add the rules in your `.eslintrc` file. The [ESLint rules](https://eslint.org/docs/rules/) go directly under `rules`.
+
+If you need to extend eslint settings, you can add the rules in your `eslint.config.js` file.
 
 ```js
-{
-  extends: '@blumilksoftware/eslint-config',
-  rules: {
-    ...
+import blumilkDefault from '@blumilksoftware/eslint-config'
+
+export default [
+  ...blumilkDefault,
+  {
+    rules: {
+      'vue/multi-word-component-names': 'error',
+    }
   }
-}
+]
 ```
 
-Then run following command to lint your code:
-```shell
-npm run lint
-```
+To run the linter, use:
 
-or following to fix found errors:
-```shell
-npm run lintf
-```
+    npm run lint
 
-### Recomended Prettier
-If you want to use prettier:
-```shell
-npm install prettier
-npm install eslint-config-prettier
-```
+To autmatically fix errors, use:
 
-Add to your`.eslintrc` file:
-```js
-{
-  extends: ['@blumilksoftware/eslint-config', '@vue/eslint-config-prettier']
-}
-```
+    npm run lintf
 
-And then recommended to create a `.prettierrc` file in your root directory like so:
-```js
-{
-  "trailingComma": "all",
-  "semi": false,
-  "tabWidth": 2,
-  "singleQuote": true,
-  "printWidth": 120
-}
-```

@@ -23,7 +23,7 @@ export default [
   ...eslintrc.extends('plugin:n/recommended'),
   js.configs.recommended,
   {
-    'rules': {
+    rules: {
       quotes: ['error', 'single'],
       indent: ['error', 2],
       semi: ['error', 'never'],
@@ -39,7 +39,7 @@ export default [
     languageOptions: {
       parser: vueParser,
       parserOptions: {
-        'parser': tsParser,
+        parser: tsParser,
         globals: globals.browser,
         project: true,
         extraFileExtensions: ['.vue'],

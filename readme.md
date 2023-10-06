@@ -1,3 +1,7 @@
+[![Version](https://img.shields.io/npm/v/%40blumilksoftware%2Feslint-config?style=for-the-badge)](https://www.npmjs.com/package/@blumilksoftware/eslint-config)
+[![NPM version](https://img.shields.io/node/v/%40blumilksoftware%2Feslint-config?style=for-the-badge)](https://www.npmjs.com/package/@blumilksoftware/eslint-config)
+[![Downloads](https://img.shields.io/npm/dt/%40blumilksoftware%2Feslint-config?style=for-the-badge)](https://www.npmjs.com/package/@blumilksoftware/eslint-config)
+
 ## eslint-config-blumilk
 
 ESlint default preset for Blumilk projects. This package assumes that the project uses modern Laravel, Vue, Typescript and TailwindCSS. It focuses on enforcing code consistency and adds some basic styling rules. Ideally, it should be used together with Prettier.

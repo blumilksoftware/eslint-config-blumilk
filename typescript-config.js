@@ -60,6 +60,7 @@ export default [
       'no-void': ['error', { allowAsStatement: true }],
       'no-unused-vars': 'off',
       'no-return-await': 'off',
+      'n/no-unsupported-features/node-builtins': 'off',
     },
     linterOptions: {
       reportUnusedDisableDirectives: true,

@@ -90,9 +90,8 @@ export default [
     languageOptions: {
       parser: tsParser,
       parserOptions: {
-        project: 'tsconfig.json',
+        project: true,
         ecmaVersion: 'latest',
-        tsconfigRootDir: __dirname,
       },
     },
     rules: {

@@ -5,6 +5,7 @@ import { FlatCompat } from '@eslint/eslintrc'
 import eslintProgressRule from './eslint-progress-rule.js'
 import vueParser from 'vue-eslint-parser'
 import globals from 'globals'
+import pluginVue from 'eslint-plugin-vue'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
@@ -13,10 +14,10 @@ const eslintrc = new FlatCompat({
 })
 
 export default [
-  ...eslintrc.extends('plugin:vue/vue3-recommended'),
   ...eslintrc.extends('plugin:tailwindcss/recommended'),
   ...eslintrc.extends('plugin:promise/recommended'),
   ...eslintrc.extends('plugin:n/recommended'),
+  ...pluginVue.configs['flat/recommended'],
   js.configs.recommended,
   {
     rules: {

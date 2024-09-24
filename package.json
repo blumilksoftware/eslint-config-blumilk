@@ -20,7 +20,7 @@
     "node": ">=20.0.0"
   },
   "peerDependencies": {
-    "eslint": ">= 9",
+    "eslint": "^8.56",
     "typescript": "^5.6"
   },
   "dependencies": {

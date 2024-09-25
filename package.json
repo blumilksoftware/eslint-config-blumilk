@@ -38,7 +38,7 @@
   "files": [
     "eslint.config.js",
     "typescript-config.js",
-    "eslint-progress-rule.js",
+    "eslint-progress-display.js",
     "index.js",
     "licence.md",
     "package.json",

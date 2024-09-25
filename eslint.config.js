@@ -2,7 +2,7 @@ import js from '@eslint/js'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import { FlatCompat } from '@eslint/eslintrc'
-import eslintProgressRule from './eslint-progress-rule.js'
+import eslintProgressDisplay from './eslint-progress-display.js'
 import vueParser from 'vue-eslint-parser'
 import globals from 'globals'
 import pluginVue from 'eslint-plugin-vue'
@@ -20,28 +20,16 @@ export default [
   ...pluginVue.configs['flat/recommended'],
   js.configs.recommended,
   {
-    rules: {
-      quotes: ['error', 'single'],
-      indent: ['error', 2],
-      semi: ['error', 'never'],
-      'comma-dangle': ['error', 'always-multiline'],
-      'eol-last': ['error', 'always'],
-    },
-    linterOptions: {
-      reportUnusedDisableDirectives: true,
-    },
-  },
-  {
     ignores: ['public/**/*.*', 'vendor/**/*.*'],
   },
   {
     plugins: {
-      'eslintProgressRule': {
-        rules: { showProgress: eslintProgressRule }
+      'eslintProgressDisplay': {
+        rules: { showProgress: eslintProgressDisplay }
       }
     },
     rules: {
-      'eslintProgressRule/showProgress': 1,
+      'eslintProgressDisplay/showProgress': 1,
       quotes: ['error', 'single'],
       indent: ['error', 2],
       semi: ['error', 'never'],

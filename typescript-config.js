@@ -2,7 +2,7 @@ import js from '@eslint/js'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import { FlatCompat } from '@eslint/eslintrc'
-import eslintProgressRule from './eslint-progress-rule.js'
+import eslintProgressDisplay from './eslint-progress-display.js'
 import vueParser from 'vue-eslint-parser'
 import tsParser from '@typescript-eslint/parser'
 import tsPlugin from '@typescript-eslint/eslint-plugin'
@@ -23,30 +23,18 @@ export default [
   ...pluginVue.configs['flat/recommended'],
   js.configs.recommended,
   {
-    rules: {
-      quotes: ['error', 'single'],
-      indent: ['error', 2],
-      semi: ['error', 'never'],
-      'comma-dangle': ['error', 'always-multiline'],
-      'eol-last': ['error', 'always'],
-    },
-    linterOptions: {
-      reportUnusedDisableDirectives: true,
-    },
-  },
-  {
     ignores: ['public/**/*.*', 'vendor/**/*.*', '*.js'],
   },
   {
     plugins: {
       '@stylistic/ts': stylisticTs,
       '@typescript-eslint': tsPlugin,
-      'eslintProgressRule': {
-        rules: { showProgress: eslintProgressRule }
+      'eslintProgressDisplay': {
+        rules: { showProgress: eslintProgressDisplay }
       }
     },
     rules: {
-      'eslintProgressRule/showProgress': 1,
+      'eslintProgressDisplay/showProgress': 1,
       quotes: ['error', 'single'],
       indent: ['error', 2],
       semi: ['error', 'never'],
@@ -87,36 +75,6 @@ export default [
     }
   },
   {
-    files: ['**/*.ts'],
-    languageOptions: {
-      parser: tsParser,
-      parserOptions: {
-        project: true,
-        ecmaVersion: 'latest',
-      },
-    },
-    rules: {
-      '@typescript-eslint/await-thenable': 'error',
-      '@typescript-eslint/consistent-type-exports': ['error', {
-        fixMixedExportsWithInlineTypeSpecifier: true,
-      }],
-      '@typescript-eslint/no-base-to-string': 'error',
-      '@typescript-eslint/no-for-in-array': 'error',
-      '@typescript-eslint/no-implied-eval': 'error',
-      '@typescript-eslint/no-misused-promises': 'error',
-      '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'error',
-      '@typescript-eslint/no-unnecessary-type-assertion': 'error',
-      '@typescript-eslint/prefer-includes': 'error',
-      '@typescript-eslint/prefer-readonly': 'error',
-      '@typescript-eslint/prefer-reduce-type-parameter': 'error',
-      '@typescript-eslint/promise-function-async': 'error',
-      '@typescript-eslint/require-array-sort-compare': ['error', { ignoreStringArrays: true }],
-      '@typescript-eslint/restrict-plus-operands': ['error', { skipCompoundAssignments: false }],
-      '@typescript-eslint/restrict-template-expressions': ['error', { allowNumber: true }],
-      '@typescript-eslint/return-await': ['error', 'always'],
-    }
-  },
-  {
     files: ['**/*.vue', '**/*.ts'],
     rules: {
       '@stylistic/ts/member-delimiter-style': ['error',{
@@ -151,7 +109,7 @@ export default [
       '@typescript-eslint/no-non-null-assertion': 'error',
       '@typescript-eslint/no-this-alias': ['error', { allowDestructuring: true }],
       '@typescript-eslint/no-unnecessary-type-constraint': 'error',
-      '@typescript-eslint/no-var-requires': 'error',
+      '@typescript-eslint/no-require-imports': 'error',
       '@typescript-eslint/prefer-ts-expect-error': 'error',
       '@typescript-eslint/no-empty-object-type': 'error',
       '@typescript-eslint/no-unsafe-function-type': 'error',

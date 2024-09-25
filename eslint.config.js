@@ -25,6 +25,11 @@ export default [
     ignores: ['public/**/*.*', 'vendor/**/*.*'],
   },
   {
+    settings: {
+      'import/resolver': {
+        node: true,
+      },
+    },
     plugins: {
       'eslintProgressDisplay': {
         rules: { showProgress: eslintProgressDisplay }

@@ -9,6 +9,7 @@ import tsPlugin from '@typescript-eslint/eslint-plugin'
 import stylisticTs from '@stylistic/eslint-plugin-ts'
 import globals from 'globals'
 import pluginVue from 'eslint-plugin-vue'
+import importPlugin from 'eslint-plugin-import'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
@@ -21,11 +22,19 @@ export default [
   ...eslintrc.extends('plugin:promise/recommended'),
   ...eslintrc.extends('plugin:n/recommended'),
   ...pluginVue.configs['flat/recommended'],
+  ...eslintrc.extends('plugin:import/typescript'),
+  importPlugin.flatConfigs.recommended,
   js.configs.recommended,
   {
     ignores: ['public/**/*.*', 'vendor/**/*.*', '*.js'],
   },
   {
+    settings: {
+      'import/resolver': {
+        typescript: true,
+        node: true,
+      },
+    },
     plugins: {
       '@stylistic/ts': stylisticTs,
       '@typescript-eslint': tsPlugin,
@@ -50,6 +59,28 @@ export default [
       'no-unused-vars': 'off',
       'no-return-await': 'off',
       'n/no-unsupported-features/node-builtins': 'off',
+      'import/namespace': 0,
+      'import/default': 0,
+      'import/no-unresolved': 'error',
+      'import/no-named-as-default': 0,
+      'import/no-named-as-default-member': 0,
+      'import/consistent-type-specifier-style': ['error', 'prefer-top-level'],
+      'import/order': [
+        'error',
+        {
+          'newlines-between': 'never',
+          'groups': [
+            'builtin',
+            'external',
+            'internal',
+            'parent',
+            'sibling',
+            'index',
+            'object',
+            'type'
+          ]
+        }
+      ],
     },
     linterOptions: {
       reportUnusedDisableDirectives: true,

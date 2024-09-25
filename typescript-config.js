@@ -76,6 +76,15 @@ export default [
   },
   {
     files: ['**/*.vue', '**/*.ts'],
+    languageOptions: {
+      parser: vueParser,
+      parserOptions: {
+        parser: tsParser,
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+        globals: globals.node,
+      },
+    },
     rules: {
       '@stylistic/ts/member-delimiter-style': ['error',{
         multiline: { delimiter: 'none' },

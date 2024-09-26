@@ -4,9 +4,9 @@
 
 ## eslint-config-blumilk
 
-ESlint default preset for Blumilk projects. This package assumes that the project uses modern Laravel, Vue, Typescript and TailwindCSS. It focuses on enforcing code consistency and adds some basic styling rules. Ideally, it should be used together with Prettier.
+ESlint default preset for Blumilk projects. This package assumes that the project uses modern Laravel, Vue, TailwindCSS and TypeScript if you want. It focuses on enforcing code consistency and adds some basic styling rules. Ideally, it should be used together with Prettier.
 
-This package uses the new [ESLint configuration format](https://eslint.org/docs/latest/use/configure/configuration-files-new) and requires ESLint 8 or above.
+This package uses the new [ESLint configuration format](https://eslint.org/docs/latest/use/configure/configuration-files-new) and requires ESLint 9 or above.
 
 In general this package includes rules from:
 
@@ -28,6 +28,16 @@ Create `eslint.config.js` file in your project's root directory:
 
 ```js
 import blumilkDefault from '@blumilksoftware/eslint-config'
+
+export default [
+    ...blumilkDefault,
+]
+```
+
+Or with TypeScript:
+
+```js
+import blumilkDefault from '@blumilksoftware/eslint-config/typescript-config.js'
 
 export default [
     ...blumilkDefault,

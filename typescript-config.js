@@ -1,55 +1,52 @@
 import js from '@eslint/js'
-import path from 'path'
-import { fileURLToPath } from 'url'
-import { FlatCompat } from '@eslint/eslintrc'
+import stylistic from '@stylistic/eslint-plugin'
 import eslintProgressDisplay from './eslint-progress-display.js'
 import vueParser from 'vue-eslint-parser'
 import tsParser from '@typescript-eslint/parser'
 import tsPlugin from '@typescript-eslint/eslint-plugin'
-import stylisticTs from '@stylistic/eslint-plugin-ts'
 import globals from 'globals'
 import pluginVue from 'eslint-plugin-vue'
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
-
-const eslintrc = new FlatCompat({
-  baseDirectory: __dirname,
-})
+import pluginTailwindcss from 'eslint-plugin-tailwindcss'
+import pluginN from 'eslint-plugin-n'
 
 export default [
-  ...eslintrc.extends('plugin:tailwindcss/recommended'),
-  ...eslintrc.extends('plugin:promise/recommended'),
-  ...eslintrc.extends('plugin:n/recommended'),
-  ...pluginVue.configs['flat/recommended'],
   js.configs.recommended,
+  stylistic.configs.customize({
+    indent: 2,
+    quotes: 'single',
+    semi: false,
+    jsx: true,
+    braceStyle: '1tbs',
+  }),
+  ...pluginTailwindcss.configs['flat/recommended'],
+  pluginN.configs['flat/recommended'],
+  ...pluginVue.configs['flat/recommended'],
   {
     ignores: ['public/**/*.*', 'vendor/**/*.*', '*.js'],
   },
   {
     plugins: {
-      '@stylistic/ts': stylisticTs,
       '@typescript-eslint': tsPlugin,
       'eslintProgressDisplay': {
-        rules: { showProgress: eslintProgressDisplay }
-      }
+        rules: { showProgress: eslintProgressDisplay },
+      },
     },
     rules: {
       'eslintProgressDisplay/showProgress': 1,
-      quotes: ['error', 'single'],
-      indent: ['error', 2],
-      semi: ['error', 'never'],
-      'comma-dangle': ['error', 'always-multiline'],
-      'eol-last': ['error', 'always'],
-      'object-curly-spacing': ['error', 'always'],
+      'eqeqeq': ['error', 'smart'],
+      'no-return-await': 'off',
+      'no-undef': 'off',
+      'no-unused-vars': 'off',
+      'no-var': 'error',
+      'no-void': ['error', { allowAsStatement: true }],
+      'object-shorthand': ['error', 'always'],
+      'prefer-const': 'error',
+      'prefer-template': 'error',
+      'n/no-extraneous-import': 'off',
+      'n/no-missing-import': 'off',
+      'n/no-unsupported-features/node-builtins': 'off',
       'tailwindcss/classnames-order': 'off',
       'tailwindcss/no-custom-classname': 'off',
-      'n/no-missing-import': 'off',
-      'n/no-extraneous-import': 'off',
-      'no-undef': 'off',
-      'no-void': ['error', { allowAsStatement: true }],
-      'no-unused-vars': 'off',
-      'no-return-await': 'off',
-      'n/no-unsupported-features/node-builtins': 'off',
     },
     linterOptions: {
       reportUnusedDisableDirectives: true,
@@ -67,12 +64,15 @@ export default [
       },
     },
     rules: {
-      'vue/multi-word-component-names': 'off',
+      'vue/block-order': ['error', {
+        order: ['script', 'template', 'style'],
+      }],
       'vue/first-attribute-linebreak': 'off',
       'vue/max-attributes-per-line': 'off',
-      'vue/singleline-html-element-content-newline': 'off',
+      'vue/multi-word-component-names': 'off',
       'vue/padding-line-between-blocks': ['error', 'always'],
-    }
+      'vue/singleline-html-element-content-newline': 'off',
+    },
   },
   {
     files: ['**/*.vue', '**/*.ts'],
@@ -86,22 +86,14 @@ export default [
       },
     },
     rules: {
-      '@stylistic/ts/member-delimiter-style': ['error',{
-        multiline: { delimiter: 'none' },
-        singleline: { delimiter: 'comma', requireLast: false },
-      }],
-      '@typescript-eslint/no-invalid-void-type': 0,
-      '@typescript-eslint/consistent-type-assertions': 0,
-      '@typescript-eslint/no-extraneous-class': 0,
-      '@typescript-eslint/ban-ts-comment': 0,
-      '@typescript-eslint/consistent-type-definitions': 0,
-      '@typescript-eslint/no-empty-function': 'off',
-      '@typescript-eslint/no-unused-vars': 'error',
       '@typescript-eslint/array-type': ['error', { default: 'array-simple' }],
+      '@typescript-eslint/ban-ts-comment': 0,
+      '@typescript-eslint/consistent-type-assertions': 0,
+      '@typescript-eslint/consistent-type-definitions': 0,
       '@typescript-eslint/consistent-type-imports': ['error', {
         prefer: 'type-imports',
         disallowTypeAnnotations: true,
-        fixStyle: 'inline-type-imports',
+        fixStyle: 'separate-type-imports',
       }],
       '@typescript-eslint/method-signature-style': 'error',
       '@typescript-eslint/naming-convention': ['error', {
@@ -111,17 +103,21 @@ export default [
         format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
       }],
       '@typescript-eslint/no-dynamic-delete': 'error',
+      '@typescript-eslint/no-empty-function': 'off',
+      '@typescript-eslint/no-empty-object-type': 'error',
       '@typescript-eslint/no-extra-non-null-assertion': 'error',
+      '@typescript-eslint/no-extraneous-class': 0,
+      '@typescript-eslint/no-inferrable-types': 'error',
+      '@typescript-eslint/no-invalid-void-type': 0,
       '@typescript-eslint/no-misused-new': 'error',
       '@typescript-eslint/no-namespace': 'error',
       '@typescript-eslint/no-non-null-asserted-optional-chain': 'error',
       '@typescript-eslint/no-non-null-assertion': 'error',
+      '@typescript-eslint/no-require-imports': 'error',
       '@typescript-eslint/no-this-alias': ['error', { allowDestructuring: true }],
       '@typescript-eslint/no-unnecessary-type-constraint': 'error',
-      '@typescript-eslint/no-require-imports': 'error',
-      '@typescript-eslint/prefer-ts-expect-error': 'error',
-      '@typescript-eslint/no-empty-object-type': 'error',
       '@typescript-eslint/no-unsafe-function-type': 'error',
+      '@typescript-eslint/no-unused-vars': 'error',
       '@typescript-eslint/no-restricted-types': ['error', {
         types: {
           String: {
@@ -144,8 +140,8 @@ export default [
             message: 'Use bigint instead',
             fixWith: 'bigint',
           },
-        }
-      }]
-    }
+        },
+      }],
+    },
   },
 ]

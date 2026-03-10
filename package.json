@@ -1,6 +1,6 @@
 {
   "name": "@blumilksoftware/eslint-config",
-  "version": "3.0.2",
+  "version": "4.0.0",
   "description": "Blumilk ESLint config",
   "license": "MIT",
   "keywords": [
@@ -11,30 +11,34 @@
   ],
   "main": "eslint.config.js",
   "author": "Blumilk",
+  "homepage": "https://github.com/blumilksoftware/eslint-config-blumilk#readme",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/blumilksoftware/eslint-config-blumilk.git"
   },
-  "homepage": "https://github.com/blumilksoftware/eslint-config-blumilk#readme",
-  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "lint": "eslint . --ignore-pattern 'tests/*'"
+  },
   "engines": {
-    "node": ">=22.0.0"
+    "node": "^20.19.0 || ^22.13.0 || >=24"
   },
   "peerDependencies": {
-    "eslint": ">= 9",
-    "typescript": "^5.6"
+    "eslint": "^10.0.3",
+    "typescript": "^5.9"
   },
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^8.5.0",
-    "@typescript-eslint/parser": "^8.5.0",
-    "eslint-plugin-n": "^17.10.2",
-    "eslint-plugin-promise": "^7.1.0",
-    "eslint-plugin-tailwindcss": "^3.13",
-    "eslint-plugin-vue": "^9.28.0",
-    "@stylistic/eslint-plugin-ts": "^2.8.0",
-    "vue-eslint-parser": "^9.4.3",
-    "ora": "^8.1.0",
-    "chalk": "^5.3.0"
+    "@eslint/js": "^10.0.1",
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "@typescript-eslint/eslint-plugin": "^8.56.1",
+    "@typescript-eslint/parser": "^8.56.1",
+    "eslint-plugin-n": "^17.24.0",
+    "eslint-plugin-tailwindcss": "^3.18.2",
+    "eslint-plugin-vue": "^10.8.0",
+    "globals": "^17.4.0",
+    "ora": "^9.3.0",
+    "vue-eslint-parser": "^10.4.0"
   },
   "files": [
     "eslint.config.js",

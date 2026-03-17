@@ -72,6 +72,10 @@ export default [
       'vue/multi-word-component-names': 'off',
       'vue/padding-line-between-blocks': ['error', 'always'],
       'vue/singleline-html-element-content-newline': 'off',
+      '@stylistic/member-delimiter-style': ['error', {
+        multiline: { delimiter: 'none' },
+        singleline: { delimiter: 'semi', requireLast: false },
+      }],
       '@typescript-eslint/array-type': ['error', { default: 'array-simple' }],
       '@typescript-eslint/ban-ts-comment': 0,
       '@typescript-eslint/consistent-type-assertions': 0,

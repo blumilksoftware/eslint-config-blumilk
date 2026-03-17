@@ -1,49 +1,54 @@
 import js from '@eslint/js'
-import path from 'path'
-import { fileURLToPath } from 'url'
-import { FlatCompat } from '@eslint/eslintrc'
+import stylistic from '@stylistic/eslint-plugin'
 import eslintProgressDisplay from './eslint-progress-display.js'
 import vueParser from 'vue-eslint-parser'
 import globals from 'globals'
 import pluginVue from 'eslint-plugin-vue'
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
-
-const eslintrc = new FlatCompat({
-  baseDirectory: __dirname,
-})
+import pluginTailwindcss from 'eslint-plugin-tailwindcss'
+import pluginN from 'eslint-plugin-n'
 
 export default [
-  ...eslintrc.extends('plugin:tailwindcss/recommended'),
-  ...eslintrc.extends('plugin:promise/recommended'),
-  ...eslintrc.extends('plugin:n/recommended'),
-  ...pluginVue.configs['flat/recommended'],
   js.configs.recommended,
+  stylistic.configs.customize({
+    indent: 2,
+    quotes: 'single',
+    semi: false,
+    jsx: true,
+    braceStyle: '1tbs',
+  }),
+  ...pluginTailwindcss.configs['flat/recommended'],
+  pluginN.configs['flat/recommended'],
+  ...pluginVue.configs['flat/recommended'],
   {
     ignores: ['public/**/*.*', 'vendor/**/*.*'],
   },
   {
     plugins: {
-      'eslintProgressDisplay': {
-        rules: { showProgress: eslintProgressDisplay }
-      }
+      eslintProgressDisplay: {
+        rules: { showProgress: eslintProgressDisplay },
+      },
     },
     rules: {
       'eslintProgressDisplay/showProgress': 1,
-      quotes: ['error', 'single'],
-      indent: ['error', 2],
-      semi: ['error', 'never'],
-      'comma-dangle': ['error', 'always-multiline'],
-      'eol-last': ['error', 'always'],
-      'object-curly-spacing': ['error', 'always'],
+      'eqeqeq': ['error', 'smart'],
+      'no-return-await': 'off',
+      'no-undef': 'off',
+      'no-unused-vars': 'off',
+      'no-var': 'error',
+      'no-void': ['error', { allowAsStatement: true }],
+      'object-shorthand': ['error', 'always'],
+      'prefer-const': 'error',
+      'prefer-template': 'error',
+      'n/no-extraneous-import': 'off',
+      'n/no-missing-import': 'off',
+      'n/no-unsupported-features/node-builtins': 'off',
       'tailwindcss/classnames-order': 'off',
       'tailwindcss/no-custom-classname': 'off',
-      'n/no-missing-import': 'off',
-      'n/no-extraneous-import': 'off',
-      'no-undef': 'off',
-      'no-void': ['error', { allowAsStatement: true }],
-      'no-unused-vars': 'off',
-      'no-return-await': 'off',
+      '@stylistic/arrow-parens': ['error', 'as-needed'],
+      '@stylistic/member-delimiter-style': ['error', {
+        multiline: { delimiter: 'none' },
+        singleline: { delimiter: 'semi', requireLast: false },
+      }],
     },
     linterOptions: {
       reportUnusedDisableDirectives: true,
@@ -60,11 +65,14 @@ export default [
       },
     },
     rules: {
-      'vue/multi-word-component-names': 'off',
+      'vue/block-order': ['error', {
+        order: ['script', 'template', 'style'],
+      }],
       'vue/first-attribute-linebreak': 'off',
       'vue/max-attributes-per-line': 'off',
-      'vue/singleline-html-element-content-newline': 'off',
+      'vue/multi-word-component-names': 'off',
       'vue/padding-line-between-blocks': ['error', 'always'],
-    }
+      'vue/singleline-html-element-content-newline': 'off',
+    },
   },
 ]

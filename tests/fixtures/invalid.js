@@ -9,4 +9,13 @@ if (foo == "bar") {
   console.log(greeting)
 }
 
-console.log(obj, nothing)
+function badIndent() {
+    return 'wrong indent'
+}
+
+if (true)
+{
+  console.log('bad brace style')
+}
+
+console.log(obj, nothing, badIndent)

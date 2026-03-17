@@ -10,6 +10,7 @@ on:
       - 'eslint-progress-display.js'
       - 'typescript-config.js'
       - 'package.json'
+      - '.npmrc'
 
 jobs:
   build:
@@ -17,13 +18,18 @@ jobs:
     if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version: [20, 22, 24]
+
     steps:
       - uses: actions/checkout@v4
 
       - name: Set up node
         uses: actions/setup-node@v4
         with:
-          node-version: 24
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
 
       - name: Install npm dependencies
         run: npm install

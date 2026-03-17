@@ -53,11 +53,27 @@ describe('typescript-config.js', () => {
     it('should catch @typescript-eslint/no-unnecessary-type-constraint violations', () => assertRuleViolation('invalid.ts', '@typescript-eslint/no-unnecessary-type-constraint'))
     it('should catch @typescript-eslint/no-unsafe-function-type violations', () => assertRuleViolation('invalid.ts', '@typescript-eslint/no-unsafe-function-type'))
     it('should catch @typescript-eslint/no-unused-vars violations', () => assertRuleViolation('invalid.ts', '@typescript-eslint/no-unused-vars'))
+    it('should catch @typescript-eslint/no-dynamic-delete violations', () => assertRuleViolation('invalid.ts', '@typescript-eslint/no-dynamic-delete'))
+    it('should catch @typescript-eslint/no-empty-object-type violations', () => assertRuleViolation('invalid.ts', '@typescript-eslint/no-empty-object-type'))
+    it('should catch @typescript-eslint/no-extra-non-null-assertion violations', () => assertRuleViolation('invalid.ts', '@typescript-eslint/no-extra-non-null-assertion'))
+    it('should catch @typescript-eslint/no-misused-new violations', () => assertRuleViolation('invalid.ts', '@typescript-eslint/no-misused-new'))
+    it('should catch @typescript-eslint/no-namespace violations', () => assertRuleViolation('invalid.ts', '@typescript-eslint/no-namespace'))
+    it('should catch @typescript-eslint/no-non-null-asserted-optional-chain violations', () => assertRuleViolation('invalid.ts', '@typescript-eslint/no-non-null-asserted-optional-chain'))
+    it('should catch @typescript-eslint/no-require-imports violations', () => assertRuleViolation('invalid.ts', '@typescript-eslint/no-require-imports'))
+    it('should catch @typescript-eslint/no-this-alias violations', () => assertRuleViolation('invalid.ts', '@typescript-eslint/no-this-alias'))
+    it('should catch @typescript-eslint/no-restricted-types violations', () => assertRuleViolation('invalid.ts', '@typescript-eslint/no-restricted-types'))
   })
 
   describe('valid Vue with TypeScript', () => {
-    it('should pass without errors', async () => {
+    it('should pass without errors for JS Vue', async () => {
       const result = await lintFixture('valid.vue')
+      const errors = result.messages.filter(m => m.ruleId !== 'eslintProgressDisplay/showProgress')
+
+      assert.equal(errors.length, 0, `Unexpected errors: ${JSON.stringify(errors, null, 2)}`)
+    })
+
+    it('should pass without errors for TS Vue', async () => {
+      const result = await lintFixture('valid-ts.vue')
       const errors = result.messages.filter(m => m.ruleId !== 'eslintProgressDisplay/showProgress')
 
       assert.equal(errors.length, 0, `Unexpected errors: ${JSON.stringify(errors, null, 2)}`)
@@ -67,5 +83,13 @@ describe('typescript-config.js', () => {
   describe('invalid Vue', () => {
     it('should catch vue/block-order violations', () => assertRuleViolation('invalid.vue', 'vue/block-order'))
     it('should catch vue/padding-line-between-blocks violations', () => assertRuleViolation('invalid.vue', 'vue/padding-line-between-blocks'))
+  })
+
+  describe('ignore patterns', () => {
+    it('should ignore root .js files', async () => {
+      const eslint = createEslint()
+
+      assert.ok(await eslint.isPathIgnored(path.join(fixturesDir, '..', '..', 'some-file.js')))
+    })
   })
 })

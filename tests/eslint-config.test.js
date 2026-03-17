@@ -69,6 +69,8 @@ describe('eslint.config.js', () => {
     it('should catch object-shorthand violations', () => assertRuleViolation('invalid.js', 'object-shorthand'))
     it('should catch @stylistic/quotes violations', () => assertRuleViolation('invalid.js', '@stylistic/quotes'))
     it('should catch @stylistic/semi violations', () => assertRuleViolation('invalid.js', '@stylistic/semi'))
+    it('should catch @stylistic/indent violations', () => assertRuleViolation('invalid.js', '@stylistic/indent'))
+    it('should catch @stylistic/brace-style violations', () => assertRuleViolation('invalid.js', '@stylistic/brace-style'))
   })
 
   describe('valid Vue', () => {

@@ -53,7 +53,7 @@ export default [
     },
   },
   {
-    files: ['**/*.vue'],
+    files: ['**/*.vue', '**/*.ts'],
     languageOptions: {
       parser: vueParser,
       parserOptions: {
@@ -72,20 +72,6 @@ export default [
       'vue/multi-word-component-names': 'off',
       'vue/padding-line-between-blocks': ['error', 'always'],
       'vue/singleline-html-element-content-newline': 'off',
-    },
-  },
-  {
-    files: ['**/*.vue', '**/*.ts'],
-    languageOptions: {
-      parser: vueParser,
-      parserOptions: {
-        parser: tsParser,
-        ecmaVersion: 'latest',
-        sourceType: 'module',
-        globals: globals.node,
-      },
-    },
-    rules: {
       '@typescript-eslint/array-type': ['error', { default: 'array-simple' }],
       '@typescript-eslint/ban-ts-comment': 0,
       '@typescript-eslint/consistent-type-assertions': 0,

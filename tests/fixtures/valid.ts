@@ -26,5 +26,13 @@ function identity<T>(value: T): T {
   return value
 }
 
+// eqeqeq smart mode — == null is allowed
+if (userName == null) {
+  console.log('null check')
+}
+
+// no-void — void as statement is allowed
+void Promise.resolve()
+
 export type { Handler }
 export { getUser, useRef, identity }

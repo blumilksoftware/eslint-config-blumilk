@@ -26,6 +26,12 @@ const assertRuleViolation = async (fixture, ruleId) => {
   assert.ok(getRuleIds(result).includes(ruleId), `Expected rule "${ruleId}" to be violated`)
 }
 
+const assertNoRuleViolation = async (fixture, ruleId) => {
+  const result = await lintFixture(fixture)
+
+  assert.ok(!getRuleIds(result).includes(ruleId), `Expected rule "${ruleId}" to not be violated`)
+}
+
 describe('typescript-config.js', () => {
   it('should export a valid config array', async () => {
     const config = await import('../typescript-config.js')
@@ -41,9 +47,29 @@ describe('typescript-config.js', () => {
 
       assert.equal(errors.length, 0, `Unexpected errors: ${JSON.stringify(errors, null, 2)}`)
     })
+
+    it('should allow == null with eqeqeq smart mode', () => assertNoRuleViolation('valid.ts', 'eqeqeq'))
+    it('should allow void as statement', () => assertNoRuleViolation('valid.ts', 'no-void'))
   })
 
-  describe('invalid TypeScript', () => {
+  describe('invalid TypeScript — base rules', () => {
+    it('should catch eqeqeq violations', () => assertRuleViolation('invalid.ts', 'eqeqeq'))
+    it('should catch no-var violations', () => assertRuleViolation('invalid.ts', 'no-var'))
+    it('should catch no-void expression violations', () => assertRuleViolation('invalid.ts', 'no-void'))
+    it('should catch prefer-const violations', () => assertRuleViolation('invalid.ts', 'prefer-const'))
+    it('should catch prefer-template violations', () => assertRuleViolation('invalid.ts', 'prefer-template'))
+    it('should catch object-shorthand violations', () => assertRuleViolation('invalid.ts', 'object-shorthand'))
+  })
+
+  describe('invalid TypeScript — stylistic rules', () => {
+    it('should catch @stylistic/quotes violations', () => assertRuleViolation('invalid.ts', '@stylistic/quotes'))
+    it('should catch @stylistic/semi violations', () => assertRuleViolation('invalid.ts', '@stylistic/semi'))
+    it('should catch @stylistic/indent violations', () => assertRuleViolation('invalid.ts', '@stylistic/indent'))
+    it('should catch @stylistic/brace-style violations', () => assertRuleViolation('invalid.ts', '@stylistic/brace-style'))
+    it('should catch @stylistic/member-delimiter-style violations', () => assertRuleViolation('invalid.ts', '@stylistic/member-delimiter-style'))
+  })
+
+  describe('invalid TypeScript — @typescript-eslint rules', () => {
     it('should catch @typescript-eslint/array-type violations', () => assertRuleViolation('invalid.ts', '@typescript-eslint/array-type'))
     it('should catch @typescript-eslint/consistent-type-imports violations', () => assertRuleViolation('invalid.ts', '@typescript-eslint/consistent-type-imports'))
     it('should catch @typescript-eslint/method-signature-style violations', () => assertRuleViolation('invalid.ts', '@typescript-eslint/method-signature-style'))
@@ -83,6 +109,8 @@ describe('typescript-config.js', () => {
   describe('invalid Vue', () => {
     it('should catch vue/block-order violations', () => assertRuleViolation('invalid.vue', 'vue/block-order'))
     it('should catch vue/padding-line-between-blocks violations', () => assertRuleViolation('invalid.vue', 'vue/padding-line-between-blocks'))
+    it('should catch @stylistic/member-delimiter-style violations in Vue', () => assertRuleViolation('invalid-ts.vue', '@stylistic/member-delimiter-style'))
+    it('should catch @typescript-eslint/consistent-type-imports violations in Vue', () => assertRuleViolation('invalid-ts.vue', '@typescript-eslint/consistent-type-imports'))
   })
 
   describe('ignore patterns', () => {
@@ -90,6 +118,18 @@ describe('typescript-config.js', () => {
       const eslint = createEslint()
 
       assert.ok(await eslint.isPathIgnored(path.join(fixturesDir, '..', '..', 'some-file.js')))
+    })
+
+    it('should ignore files in public/', async () => {
+      const eslint = createEslint()
+
+      assert.ok(await eslint.isPathIgnored(path.join(fixturesDir, '..', '..', 'public', 'app.ts')))
+    })
+
+    it('should ignore files in vendor/', async () => {
+      const eslint = createEslint()
+
+      assert.ok(await eslint.isPathIgnored(path.join(fixturesDir, '..', '..', 'vendor', 'lib.ts')))
     })
   })
 })

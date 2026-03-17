@@ -1,7 +1,8 @@
 import { App } from 'not-installed-package'
 
+// @stylistic/member-delimiter-style (multiline with semicolons — should be none)
 interface Ref<T> {
-  value: T
+  value: T;
 }
 
 const user_name: string = 'John'
@@ -71,5 +72,40 @@ const num: Number = 42
 const sym: Symbol = Symbol('test')
 const big: BigInt = BigInt(1)
 
+// eqeqeq
+const eqCheck = str == 'test'
+
+// no-var
+var badVar = 'no-var'
+
+// no-void (expression)
+const voidExpr = void 0
+
+// object-shorthand
+const shorthandObj = { badVar: badVar }
+
+// prefer-const
+let neverReassigned = 'const'
+
+// prefer-template
+const tmpl = 'hello ' + user_name
+
+// @stylistic/quotes
+const dblQuoted = "double"
+
+// @stylistic/semi
+const withSemi = 1;
+
+// @stylistic/indent
+function badIndent() {
+    return 'wrong'
+}
+
+// @stylistic/brace-style
+if (true)
+{
+  badIndent()
+}
+
 export type { App, Handler, Empty, Creator }
-export { getUser, getValue, identity, fn, getExtra, getOptional, required, MyClass, MyNamespace, str, bool, num, sym, big }
+export { getUser, getValue, identity, fn, getExtra, getOptional, required, MyClass, MyNamespace, str, bool, num, sym, big, eqCheck, badVar, voidExpr, shorthandObj, neverReassigned, tmpl, dblQuoted, withSemi }

@@ -29,6 +29,15 @@ const assertRuleViolation = async (fixture, ruleId) => {
   )
 }
 
+const assertNoRuleViolation = async (fixture, ruleId) => {
+  const result = await lintFixture(fixture)
+
+  assert.ok(
+    !getRuleIds(result).includes(ruleId),
+    `Expected rule "${ruleId}" to not be violated`,
+  )
+}
+
 describe('eslint.config.js', () => {
   it('should export a valid config array', async () => {
     const config = await import('../eslint.config.js')
@@ -45,19 +54,8 @@ describe('eslint.config.js', () => {
       assert.equal(errors.length, 0, `Unexpected errors: ${JSON.stringify(errors, null, 2)}`)
     })
 
-    it('should allow == null with eqeqeq smart mode', async () => {
-      const result = await lintFixture('valid.js')
-      const eqeqeq = result.messages.filter(m => m.ruleId === 'eqeqeq')
-
-      assert.equal(eqeqeq.length, 0, 'eqeqeq should allow == null in smart mode')
-    })
-
-    it('should allow void as statement', async () => {
-      const result = await lintFixture('valid.js')
-      const noVoid = result.messages.filter(m => m.ruleId === 'no-void')
-
-      assert.equal(noVoid.length, 0, 'no-void should allow void as statement')
-    })
+    it('should allow == null with eqeqeq smart mode', () => assertNoRuleViolation('valid.js', 'eqeqeq'))
+    it('should allow void as statement', () => assertNoRuleViolation('valid.js', 'no-void'))
   })
 
   describe('invalid JavaScript', () => {

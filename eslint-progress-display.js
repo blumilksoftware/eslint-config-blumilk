@@ -12,7 +12,7 @@ const colors = {
   blue: '\x1b[34m',
 }
 
-process.on('exit', (code) => {
+process.on('exit', code => {
   const diff = (((new Date()).getTime() - start) / 1000).toFixed(3)
 
   if (code === 0) {
@@ -22,7 +22,7 @@ process.on('exit', (code) => {
   }
 })
 
-const create = (context) => {
+const create = context => {
   counter++
 
   spinner.color = 'blue'

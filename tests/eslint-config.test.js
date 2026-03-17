@@ -69,6 +69,7 @@ describe('eslint.config.js', () => {
     it('should catch @stylistic/semi violations', () => assertRuleViolation('invalid.js', '@stylistic/semi'))
     it('should catch @stylistic/indent violations', () => assertRuleViolation('invalid.js', '@stylistic/indent'))
     it('should catch @stylistic/brace-style violations', () => assertRuleViolation('invalid.js', '@stylistic/brace-style'))
+    it('should catch @stylistic/arrow-parens violations', () => assertRuleViolation('invalid.js', '@stylistic/arrow-parens'))
   })
 
   describe('valid Vue', () => {

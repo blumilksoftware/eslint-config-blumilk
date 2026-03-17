@@ -107,5 +107,8 @@ if (true)
   badIndent()
 }
 
+// @stylistic/arrow-parens
+const arrowFn = (x) => x * 2
+
 export type { App, Handler, Empty, Creator }
-export { getUser, getValue, identity, fn, getExtra, getOptional, required, MyClass, MyNamespace, str, bool, num, sym, big, eqCheck, badVar, voidExpr, shorthandObj, neverReassigned, tmpl, dblQuoted, withSemi }
+export { getUser, getValue, identity, fn, getExtra, getOptional, required, MyClass, MyNamespace, str, bool, num, sym, big, eqCheck, badVar, voidExpr, shorthandObj, neverReassigned, tmpl, dblQuoted, withSemi, arrowFn }

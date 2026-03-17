@@ -67,6 +67,7 @@ describe('typescript-config.js', () => {
     it('should catch @stylistic/indent violations', () => assertRuleViolation('invalid.ts', '@stylistic/indent'))
     it('should catch @stylistic/brace-style violations', () => assertRuleViolation('invalid.ts', '@stylistic/brace-style'))
     it('should catch @stylistic/member-delimiter-style violations', () => assertRuleViolation('invalid.ts', '@stylistic/member-delimiter-style'))
+    it('should catch @stylistic/arrow-parens violations', () => assertRuleViolation('invalid.ts', '@stylistic/arrow-parens'))
   })
 
   describe('invalid TypeScript — @typescript-eslint rules', () => {

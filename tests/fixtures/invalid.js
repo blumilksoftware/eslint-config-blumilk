@@ -18,4 +18,7 @@ if (true)
   console.log('bad brace style')
 }
 
-console.log(obj, nothing, badIndent)
+// @stylistic/arrow-parens
+const arrowFn = (x) => x * 2
+
+console.log(obj, nothing, badIndent, arrowFn)

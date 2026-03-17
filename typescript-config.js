@@ -47,6 +47,11 @@ export default [
       'n/no-unsupported-features/node-builtins': 'off',
       'tailwindcss/classnames-order': 'off',
       'tailwindcss/no-custom-classname': 'off',
+      '@stylistic/arrow-parens': ['error', 'as-needed'],
+      '@stylistic/member-delimiter-style': ['error', {
+        multiline: { delimiter: 'none' },
+        singleline: { delimiter: 'semi', requireLast: false },
+      }],
     },
     linterOptions: {
       reportUnusedDisableDirectives: true,
@@ -72,10 +77,6 @@ export default [
       'vue/multi-word-component-names': 'off',
       'vue/padding-line-between-blocks': ['error', 'always'],
       'vue/singleline-html-element-content-newline': 'off',
-      '@stylistic/member-delimiter-style': ['error', {
-        multiline: { delimiter: 'none' },
-        singleline: { delimiter: 'semi', requireLast: false },
-      }],
       '@typescript-eslint/array-type': ['error', { default: 'array-simple' }],
       '@typescript-eslint/ban-ts-comment': 0,
       '@typescript-eslint/consistent-type-assertions': 0,
